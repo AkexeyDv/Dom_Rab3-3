@@ -1,37 +1,31 @@
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
-    public static void main(String[] args) {
-        String login;
-        String password;
-        String confirmPassword;
+    static final Pattern pattern = Pattern.compile("(\\w){1,20}");
 
-        login="Abfbf_erer";
-        password="Qwerty123";
-        confirmPassword="Qwerty123";
+    public static void main(String[] args) {
+        String login = "Abfbf_erer";
+        String password = "Qwerty123";
+        String confirmPassword = "Qwerty123";
+
         try {
-            checkAccount(login,password,confirmPassword);
-        }catch (IllegalArgumentException e){
-            System.out.println("Ошибка: "+e.getMessage());
+            checkAccount(login, password, confirmPassword);
+        } catch (WrongLoginException | WrongPasswordException e) {
+            System.out.println("Ошибка: " + e.getMessage());
         }
 
-
-
-    }
-    public static void checkAccount(String login, String password, String confimPassword) throws WrongLoginPasswordException{
-        Pattern pattern = Pattern.compile("(\\w){1,20}");
-        Matcher matLog = pattern.matcher(login);
-        Matcher matPass = pattern.matcher(password);
-        if (!matLog.matches()){throw new WrongLoginException("Формат логина неверен");}
-        if (!matPass.matches()){throw new WrongPasswordException("Формат пароля неверен");}
-        if (!password.equals(confimPassword)){
-            throw new WrongPasswordException("Пароли не совпадают");}
-
-
-
-
     }
 
+    public static void checkAccount(String login, String password, String confimPassword) throws IllegalArgumentException {
 
+        if (!pattern.matcher(login).matches()) {
+            throw new WrongLoginException("Формат логина неверен");
+        }
+        if (!pattern.matcher(password).matches()) {
+            throw new WrongPasswordException("Формат пароля неверен");
+        }
+        if (!password.equals(confimPassword)) {
+            throw new WrongPasswordException("Пароли не совпадают");
+        }
+    }
 }
