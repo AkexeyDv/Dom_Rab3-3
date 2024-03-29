@@ -1,4 +1,4 @@
-public class WrongLoginException extends WrongLoginPasswordException{
+public class WrongLoginException extends WrongLoginPasswordException {
 
 
     public WrongLoginException(String s) {
