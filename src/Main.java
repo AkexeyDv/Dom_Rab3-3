@@ -13,6 +13,7 @@ public class Main {
         } catch (WrongLoginException | WrongPasswordException e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
+
     }
 
     public static void checkAccount(String login, String password, String confimPassword) throws IllegalArgumentException {
