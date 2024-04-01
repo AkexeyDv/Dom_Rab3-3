@@ -1,4 +1,4 @@
-public class WrongLoginException extends IllegalArgumentException {
+public class WrongLoginException extends InterruptedException {
 
 
     public WrongLoginException(String s) {
