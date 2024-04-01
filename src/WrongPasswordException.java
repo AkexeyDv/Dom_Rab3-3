@@ -1,5 +1,6 @@
-public class WrongPasswordException extends WrongLoginPasswordException{
+public class WrongPasswordException extends InterruptedException {
     public WrongPasswordException(String s) {
         super(s);
+
     }
 }
